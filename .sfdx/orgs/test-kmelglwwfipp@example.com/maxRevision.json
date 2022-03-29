@@ -1,0 +1,137 @@
+{
+  "serverMaxRevisionCounter": 133,
+  "sourceMembers": {
+    "Profile__Admin": {
+      "serverRevisionCounter": 68,
+      "lastRetrievedFromServer": 68,
+      "memberType": "Profile",
+      "isNameObsolete": false
+    },
+    "CustomTab__Custom_Metadata_Types": {
+      "serverRevisionCounter": 28,
+      "lastRetrievedFromServer": 28,
+      "memberType": "CustomTab",
+      "isNameObsolete": false
+    },
+    "FlexiPage__Custom_Metadata_Types": {
+      "serverRevisionCounter": 20,
+      "lastRetrievedFromServer": 20,
+      "memberType": "FlexiPage",
+      "isNameObsolete": true
+    },
+    "LightningComponentBundle__cmtUserInterfaceContainer": {
+      "serverRevisionCounter": 29,
+      "lastRetrievedFromServer": 29,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": true
+    },
+    "LightningComponentResource__cmtUserInterfaceContainer/cmtUserInterfaceContainer.js": {
+      "serverRevisionCounter": 14,
+      "lastRetrievedFromServer": 14,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUserInterfaceContainer/cmtUserInterfaceContainer.html": {
+      "serverRevisionCounter": 15,
+      "lastRetrievedFromServer": 15,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUserInterfaceContainer/cmtUserInterfaceContainer.js-meta.xml": {
+      "serverRevisionCounter": 16,
+      "lastRetrievedFromServer": 16,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "Layout__CMT__mdt-CMT Layout": {
+      "serverRevisionCounter": 22,
+      "lastRetrievedFromServer": 22,
+      "memberType": "Layout",
+      "isNameObsolete": false
+    },
+    "CustomObject__CMT__mdt": {
+      "serverRevisionCounter": 23,
+      "lastRetrievedFromServer": 23,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtUiContainer": {
+      "serverRevisionCounter": 130,
+      "lastRetrievedFromServer": 130,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.js": {
+      "serverRevisionCounter": 131,
+      "lastRetrievedFromServer": 131,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.html": {
+      "serverRevisionCounter": 132,
+      "lastRetrievedFromServer": 132,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.js-meta.xml": {
+      "serverRevisionCounter": 133,
+      "lastRetrievedFromServer": 133,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "ApexClass__CmtUiService": {
+      "serverRevisionCounter": 50,
+      "lastRetrievedFromServer": 50,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "ApexClass__CMTDeployCallback": {
+      "serverRevisionCounter": 69,
+      "lastRetrievedFromServer": 69,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "CustomField__CMT_Deploy_Event__e.Successfully_Deployed__c": {
+      "serverRevisionCounter": 59,
+      "lastRetrievedFromServer": 59,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__CMT_Deploy_Event__e.Error_Message__c": {
+      "serverRevisionCounter": 60,
+      "lastRetrievedFromServer": 60,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomObject__CMT_Deploy_Event__e": {
+      "serverRevisionCounter": 58,
+      "lastRetrievedFromServer": 58,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtUiSetup": {
+      "serverRevisionCounter": 118,
+      "lastRetrievedFromServer": 118,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.js": {
+      "serverRevisionCounter": 119,
+      "lastRetrievedFromServer": 119,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.html": {
+      "serverRevisionCounter": 120,
+      "lastRetrievedFromServer": 120,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.js-meta.xml": {
+      "serverRevisionCounter": 121,
+      "lastRetrievedFromServer": 121,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    }
+  }
+}

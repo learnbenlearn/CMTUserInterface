@@ -1,0 +1,15 @@
+<!--
+  @description       : 
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 03-29-2022
+  @last modified by  : Ben Learn
+-->
+<template>
+    <template if:false={cmtNames}>
+      <c-cmt-ui-setup onsetupcmtrecords={handleSetupCMTRecords} onrefreshcmtrecords={handleRefreshCMTRecords}>
+      </c-cmt-ui-setup>
+    </template>
+
+    {cmtNames}
+</template>
