@@ -2,21 +2,15 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 03-26-2022
+ * @last modified on  : 04-15-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
     @AuraEnabled(cacheable=true)
-    public static List<String> getCMTs() {
-        List<CMT__mdt> cmts = [SELECT MasterLabel FROM CMT__mdt];
+    public static List<CMT__mdt> getCMTs() {
+        List<CMT__mdt> cmts = [SELECT MasterLabel, DeveloperName FROM CMT__mdt];
 
-        List<String> cmtNames = new List<String>();
-
-        for(CMT__mdt cmt : cmts) {
-            cmtNames.add(cmt.MasterLabel);
-        }
-
-        return cmtNames;
+        return cmts;
     }
 
     @AuraEnabled
@@ -33,7 +27,7 @@ public with sharing class CmtUiService {
         }
         
         for(String customMetadataType : customMetadataTypes) {
-            if(customMetadataType != 'cmt') {
+            if(customMetadataType != 'cmt__mdt') {
                 Metadata.CustomMetadata cmtInstance = new Metadata.CustomMetadata();
                 String cmtPartialName = String.valueOf(sObjectMap.get(customMetadataType));
                 cmtPartialName = cmtPartialName.substring(0, cmtPartialName.length() - 5);
@@ -44,6 +38,44 @@ public with sharing class CmtUiService {
             }
         }
 
-        Metadata.Operations.enqueueDeployment(setupContainer, new CMTDeployCallback());
+        Metadata.Operations.enqueueDeployment(setupContainer, new CmtDeploymentCallback());
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Map<String, CmtDataWrapper> getCMTRecordsSingleCall(List<String> cmts) {
+        if(cmts.size() > 100) {
+            throw new AuraHandledException('To avoid violating governor limits, this method cannot' +
+                ' be called on a list of more than 100 Custom Metadata Types.');
+        }
+
+        Map<String, Schema.SObjectType> globalDescribeMap = Schema.getGlobalDescribe();
+
+        List<Schema.DescribeSObjectResult> cmtDescribes = new List<Schema.DescribeSobjectResult>();
+
+        for(String cmt : cmts) {
+            cmtDescribes.add(globalDescribeMap.get(cmt.toLowerCase() + '__mdt').getDescribe());
+        }
+
+        Map<String, CmtDataWrapper> cmtRecordMap = new Map<String, CmtDataWrapper>();
+
+        for(Schema.DescribeSObjectResult cmt : cmtDescribes) {
+            Map<String, Schema.SObjectField> cmtFields = cmt.fields.getMap();
+            List<String> fieldsToQuery = new List<String>();
+
+            for(String cmtField : cmtFields.keySet()) {
+                if(cmtFields.get(cmtField).getDescribe().isCustom()) {
+                    fieldsToQuery.add(cmtField);
+                }
+            }
+
+            String queryString = 'SELECT MasterLabel, DeveloperName, ' + 
+                String.join(fieldsToQuery, ', ') + ' FROM ' + cmt.getName();
+            List<sObject> cmtRecords = Database.query(queryString);
+
+            CmtDataWrapper tempWrapper = new CmtDataWrapper(cmtRecords, fieldsToQuery);
+            cmtRecordMap.put(cmt.getName(), tempWrapper);
+        }
+        System.debug(cmtRecordMap);
+        return cmtRecordMap;
     }
 }

@@ -2,14 +2,23 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 03-29-2022
+  @last modified on  : 04-15-2022
   @last modified by  : Ben Learn
 -->
 <template>
-    <template if:false={cmtNames}>
-      <c-cmt-ui-setup onsetupcmtrecords={handleSetupCMTRecords} onrefreshcmtrecords={handleRefreshCMTRecords}>
-      </c-cmt-ui-setup>
+    <template if:true={showSpinner}>
+      <lightning-spinner></lightning-spinner>
     </template>
 
-    {cmtNames}
+    <template if:false={showSpinner}>
+      <template if:false={cmtOptions}>
+        <c-cmt-ui-setup onsetupcmtrecords={handleSetupCMTRecords} onrefreshcmtrecords={handleRefreshCMTRecords}>
+        </c-cmt-ui-setup>
+      </template>
+
+      <template if:true={cmtOptions}>
+        <lightning-combobox label="Select Custom Metadata Type" options={cmtOptions} onchange={handleCMTChange}>
+        </lightning-combobox>
+      </template>
+    </template>
 </template>

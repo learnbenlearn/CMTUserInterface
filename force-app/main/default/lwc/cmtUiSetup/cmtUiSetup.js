@@ -24,8 +24,8 @@ export default class CmtUiSetup extends LightningElement {
     }
 
     async subscribeToChannel() {
-        const messageCallback = (message) => {
-            if(message.Successfully_Deployed__c) {
+        const messageCallback = (response) => {
+            if(response.data.payload.Successfully_Deployed__c) {
                 this.dispatchEvent(new ShowToastEvent({
                     message: 'Retrieving new custom metadata records.',
                     title: 'Success',
@@ -36,7 +36,7 @@ export default class CmtUiSetup extends LightningElement {
                 this.dispatchEvent(cmtRefreshEvent);
             } else {
                 this.dispatchEvent(new ShowToastEvent({
-                    message: message.Error_Message__c,
+                    message: response.data.payload.Error_Message__c,
                     title: 'Error',
                     variant: 'error'
                 }));

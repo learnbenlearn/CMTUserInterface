@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 04-15-2022
+  @last modified by  : Ben Learn
+-->
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-2">
+            <label for="MasterLabel">Master Label</label>
+            <lightning-formatted-text id="MasterLabel" value={cmtRecord.MasterLabel}>
+            </lightning-formatted-text>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <label for="DeveloperName">Developer Name</label>
+            <lightning-formatted-text id="DeveloperName" value={cmtRecord.DeveloperName}>
+            </lightning-formatted-text>
+        </div>
+    </div>
+
+</template>

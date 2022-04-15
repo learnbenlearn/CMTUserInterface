@@ -1,0 +1,14 @@
+<!--
+  @description       : 
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 04-15-2022
+  @last modified by  : Ben Learn
+-->
+<template>
+    <template for:each={cmtRecords} for:item="cmtRecord">
+        <lightning-formatted-url label={cmtRecord.MasterLabel} key={cmtRecord.Id}>
+        </lightning-formatted-url>
+        <br key={cmtRecord.Id}/>
+    </template>
+</template>

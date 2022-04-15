@@ -1,31 +1,64 @@
-import { LightningElement, wire } from 'lwc';
-
-import { refreshApex } from '@salesforce/apex';
+import { LightningElement, track } from 'lwc';
 
 import getCMTs from '@salesforce/apex/CmtUiService.getCMTs';
+import getCMTRecordsSingleCall from '@salesforce/apex/CmtUiService.getCMTRecordsSingleCall';
 import setupCmtUi from '@salesforce/apex/CmtUiService.setupCmtUi';
 
 export default class CmtUiContainer extends LightningElement {
+    cmtRecordsByType;
     cmtNames;
+    @track cmtOptions;
+    showSpinner = true;
 
-    @wire(getCMTs)
-    parseCMTNames({error, data}) {
-        if(data && data.length > 0) {
-            this.cmtNames = data;
-        } else if(error) {
+    connectedCallback() {
+        this.getCMTNames();
+    }
+
+    async getCMTNames() {
+        try {
+            let getCMTsResponse = await getCMTs();
+
+            if(getCMTsResponse.length > 0) {
+                this.cmtNames = [];
+                this.cmtOptions = [];
+
+                for(let cmt of getCMTsResponse) {
+                    this.cmtNames.push(cmt.DeveloperName);
+
+                    this.cmtOptions.push({
+                        label: cmt.MasterLabel,
+                        value: cmt.DeveloperName
+                    });
+                }
+
+                this.cmtRecordsByType = await getCMTRecordsSingleCall({cmts: this.cmtNames});
+            }
+            this.showSpinner = false;
+
+        } catch(error) {
             console.error(error);
         }
     }
 
     async handleSetupCMTRecords() {
         try {
+            this.showSpinner = true;
             await setupCmtUi();
+            this.getCMTNames();
         } catch(error) {
             console.error(error)
         }
     }
     
     handleRefreshCMTRecords() {
-        refreshApex(this.cmtNames);
+        this.getCMTNames();
+        this.showSpinner = false;
+    }
+
+    handleCMTChange(event) {
+        console.log(event.detail.value);
+        
+        console.log(this.cmtRecordsByType);
+        console.log(this.cmtNames); 
     }
 }
