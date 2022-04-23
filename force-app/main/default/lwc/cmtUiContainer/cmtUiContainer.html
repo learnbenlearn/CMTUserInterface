@@ -2,7 +2,7 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 04-15-2022
+  @last modified on  : 04-23-2022
   @last modified by  : Ben Learn
 -->
 <template>
@@ -19,6 +19,8 @@
       <template if:true={cmtOptions}>
         <lightning-combobox label="Select Custom Metadata Type" options={cmtOptions} onchange={handleCMTChange}>
         </lightning-combobox>
+
+        <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName}></c-cmt-records-sidebar>
       </template>
     </template>
 </template>

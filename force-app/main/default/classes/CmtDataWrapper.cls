@@ -3,18 +3,18 @@
  *                      data returned by CmtUiService.getCMTRecordsSingleCall().
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 04-15-2022
+ * @last modified on  : 04-23-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtDataWrapper {
     @AuraEnabled
-    public List<sObject> cmtRecords;
+    public Map<String, sObject> cmtNameRecordMap;
     
     @AuraEnabled
     public List<String> cmtCustomFields;
 
-    public CmtDataWrapper(List<sObject> cmtRecords, List<String> cmtCustomFields) {
-        this.cmtRecords = cmtRecords;
+    public CmtDataWrapper(Map<String, sObject> cmtNameRecordMap, List<String> cmtCustomFields) {
+        this.cmtNameRecordMap = cmtNameRecordMap;
         this.cmtCustomFields = cmtCustomFields;
     }
 }

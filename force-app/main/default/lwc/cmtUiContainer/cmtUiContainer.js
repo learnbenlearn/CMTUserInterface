@@ -6,6 +6,7 @@ import setupCmtUi from '@salesforce/apex/CmtUiService.setupCmtUi';
 
 export default class CmtUiContainer extends LightningElement {
     cmtRecordsByType;
+    cmtRecordsByName;
     cmtNames;
     @track cmtOptions;
     showSpinner = true;
@@ -56,9 +57,7 @@ export default class CmtUiContainer extends LightningElement {
     }
 
     handleCMTChange(event) {
-        console.log(event.detail.value);
-        
-        console.log(this.cmtRecordsByType);
-        console.log(this.cmtNames); 
+        this.cmtRecordsByName = this.cmtRecordsByType[event.detail.value + '__mdt'].cmtNameRecordMap;
+        console.log(this.cmtRecordsByName);
     }
 }

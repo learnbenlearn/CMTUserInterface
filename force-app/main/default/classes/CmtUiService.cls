@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 04-15-2022
+ * @last modified on  : 04-23-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -71,11 +71,16 @@ public with sharing class CmtUiService {
             String queryString = 'SELECT MasterLabel, DeveloperName, ' + 
                 String.join(fieldsToQuery, ', ') + ' FROM ' + cmt.getName();
             List<sObject> cmtRecords = Database.query(queryString);
+            Map<String, sObject> cmtNameRecordMap = new Map<String, sObject>();
 
-            CmtDataWrapper tempWrapper = new CmtDataWrapper(cmtRecords, fieldsToQuery);
+            for(sObject cmtRecord : cmtRecords) {
+                cmtNameRecordMap.put(String.valueOf(cmtRecord.get('DeveloperName')), cmtRecord);
+            }
+
+            CmtDataWrapper tempWrapper = new CmtDataWrapper(cmtNameRecordMap, fieldsToQuery);
             cmtRecordMap.put(cmt.getName(), tempWrapper);
         }
-        System.debug(cmtRecordMap);
+        
         return cmtRecordMap;
     }
 }

@@ -2,13 +2,17 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 04-15-2022
+  @last modified on  : 04-23-2022
   @last modified by  : Ben Learn
 -->
 <template>
-    <template for:each={cmtRecords} for:item="cmtRecord">
-        <lightning-formatted-url label={cmtRecord.MasterLabel} key={cmtRecord.Id}>
+  <template if:true={displaySidebar}>
+    ddddf
+    {cmtNameLabelMap}
+    <template for:each={cmtNameLabelMap} for:item="cmtName">
+        <lightning-formatted-url label={cmtNameLabelMap.cmtName} key={cmtName}>
         </lightning-formatted-url>
-        <br key={cmtRecord.Id}/>
+        <br key={cmtName}/>
     </template>
+  </template>
 </template>
