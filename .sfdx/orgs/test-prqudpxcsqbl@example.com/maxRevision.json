@@ -1,0 +1,353 @@
+{
+  "serverMaxRevisionCounter": 321,
+  "sourceMembers": {
+    "CustomField__CMT_Deploy_Event__e.Error_Message__c": {
+      "serverRevisionCounter": 4,
+      "lastRetrievedFromServer": 4,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__CMT_Deploy_Event__e.Successfully_Deployed__c": {
+      "serverRevisionCounter": 5,
+      "lastRetrievedFromServer": 5,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "Profile__Admin": {
+      "serverRevisionCounter": 81,
+      "lastRetrievedFromServer": 81,
+      "memberType": "Profile",
+      "isNameObsolete": false
+    },
+    "CustomObject__CMT_Deploy_Event__e": {
+      "serverRevisionCounter": 25,
+      "lastRetrievedFromServer": 25,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "CustomObject__CMT__mdt": {
+      "serverRevisionCounter": 26,
+      "lastRetrievedFromServer": 26,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "ApexClass__CmtDataWrapper": {
+      "serverRevisionCounter": 6,
+      "lastRetrievedFromServer": 6,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "ApexClass__CmtDeploymentCallback": {
+      "serverRevisionCounter": 7,
+      "lastRetrievedFromServer": 7,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "ApexClass__CmtUiService": {
+      "serverRevisionCounter": 8,
+      "lastRetrievedFromServer": 8,
+      "memberType": "ApexClass",
+      "isNameObsolete": false
+    },
+    "CustomTab__Custom_Metadata_Types": {
+      "serverRevisionCounter": 27,
+      "lastRetrievedFromServer": 27,
+      "memberType": "CustomTab",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtRecordForm": {
+      "serverRevisionCounter": 65,
+      "lastRetrievedFromServer": 65,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtRecordsSidebar": {
+      "serverRevisionCounter": 314,
+      "lastRetrievedFromServer": 314,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtUiContainer": {
+      "serverRevisionCounter": 318,
+      "lastRetrievedFromServer": 318,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentBundle__cmtUiSetup": {
+      "serverRevisionCounter": 77,
+      "lastRetrievedFromServer": 77,
+      "memberType": "LightningComponentBundle",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordForm/cmtRecordForm.html": {
+      "serverRevisionCounter": 66,
+      "lastRetrievedFromServer": 66,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordForm/cmtRecordForm.js": {
+      "serverRevisionCounter": 67,
+      "lastRetrievedFromServer": 67,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordForm/cmtRecordForm.js-meta.xml": {
+      "serverRevisionCounter": 68,
+      "lastRetrievedFromServer": 68,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.js-meta.xml": {
+      "serverRevisionCounter": 319,
+      "lastRetrievedFromServer": 319,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.html": {
+      "serverRevisionCounter": 320,
+      "lastRetrievedFromServer": 320,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiContainer/cmtUiContainer.js": {
+      "serverRevisionCounter": 321,
+      "lastRetrievedFromServer": 321,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.html": {
+      "serverRevisionCounter": 78,
+      "lastRetrievedFromServer": 78,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.js": {
+      "serverRevisionCounter": 79,
+      "lastRetrievedFromServer": 79,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtUiSetup/cmtUiSetup.js-meta.xml": {
+      "serverRevisionCounter": 80,
+      "lastRetrievedFromServer": 80,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordsSidebar/cmtRecordsSidebar.js": {
+      "serverRevisionCounter": 315,
+      "lastRetrievedFromServer": 315,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordsSidebar/cmtRecordsSidebar.html": {
+      "serverRevisionCounter": 316,
+      "lastRetrievedFromServer": 316,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "LightningComponentResource__cmtRecordsSidebar/cmtRecordsSidebar.js-meta.xml": {
+      "serverRevisionCounter": 317,
+      "lastRetrievedFromServer": 317,
+      "memberType": "LightningComponentResource",
+      "isNameObsolete": false
+    },
+    "CustomField__Badge_Product_to_Delete__mdt.Badge_Product__c": {
+      "serverRevisionCounter": 29,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__Badge_Product_to_Delete__mdt.Trail_Product__c": {
+      "serverRevisionCounter": 30,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomField__Badge_to_Keep__mdt.Badge_Name__c": {
+      "serverRevisionCounter": 31,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomField",
+      "isNameObsolete": false
+    },
+    "CustomObject__Badge_Product_to_Delete__mdt": {
+      "serverRevisionCounter": 32,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "CustomObject__Badge_to_Keep__mdt": {
+      "serverRevisionCounter": 33,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomObject",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Commerce_Cloud": {
+      "serverRevisionCounter": 34,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Education_Cloud": {
+      "serverRevisionCounter": 35,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Education_Cloud_Nonprofit_Cloud": {
+      "serverRevisionCounter": 36,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Financial_Services_Cloud": {
+      "serverRevisionCounter": 37,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Health_Cloud": {
+      "serverRevisionCounter": 38,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Marketing_Cloud": {
+      "serverRevisionCounter": 39,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Mulesoft": {
+      "serverRevisionCounter": 40,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Nonprofit_Cloud": {
+      "serverRevisionCounter": 41,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_Product_to_Delete.Pardot": {
+      "serverRevisionCounter": 42,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.API_Basics": {
+      "serverRevisionCounter": 43,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Data_Storage": {
+      "serverRevisionCounter": 44,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Digital_Transformation": {
+      "serverRevisionCounter": 45,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Einstein_Copy_Insights_Quick_Look": {
+      "serverRevisionCounter": 46,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Einstein_Marketing_Insights_in_Datorama": {
+      "serverRevisionCounter": 47,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_APIs": {
+      "serverRevisionCounter": 48,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Basics": {
+      "serverRevisionCounter": 49,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Products": {
+      "serverRevisionCounter": 50,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Programmatic_Languages": {
+      "serverRevisionCounter": 51,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Roles_and_Permissions": {
+      "serverRevisionCounter": 52,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Send_Methods_Quick_Look": {
+      "serverRevisionCounter": 53,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Marketing_Cloud_Setup": {
+      "serverRevisionCounter": 54,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Pardot_Email_Sending": {
+      "serverRevisionCounter": 55,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Quick_Start_Create_and_Send_a_Message": {
+      "serverRevisionCounter": 56,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Quick_Start_Create_and_Send_an_Email": {
+      "serverRevisionCounter": 57,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Salesforce_Marketer_Quick_Look": {
+      "serverRevisionCounter": 58,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Self_Serve_SSL_Certificates_in_Marketing": {
+      "serverRevisionCounter": 59,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Student_Success_Hub": {
+      "serverRevisionCounter": 60,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    },
+    "CustomMetadata__Badge_to_Keep.Volunteers_for_Salesforce": {
+      "serverRevisionCounter": 61,
+      "lastRetrievedFromServer": null,
+      "memberType": "CustomMetadata",
+      "isNameObsolete": false
+    }
+  }
+}

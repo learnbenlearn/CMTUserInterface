@@ -2,7 +2,7 @@ import { LightningElement, api } from 'lwc';
 
 export default class CmtRecordsSidebar extends LightningElement {
     _cmtRecordsByName;
-    cmtNameLabelMap;
+    cmtRecordNameLabelMap;
     displaySidebar;
 
     get cmtRecordsByName() {
@@ -12,14 +12,24 @@ export default class CmtRecordsSidebar extends LightningElement {
     @api set cmtRecordsByName(value) {
         if(value) {
             this._cmtRecordsByName = value;
-            console.log(this._cmtRecordsByName);
-            this.cmtNameLabelMap = [];
-            for(let cmt of this._cmtRecordsByName) {
-                this.cmtNameLabelMap.push({cmt: this._cmtRecordsByName[cmt].MasterLabel});
+            this.cmtRecordNameLabelMap = [];
+
+            for(let cmtRecordName in this._cmtRecordsByName) {
+                this.cmtRecordNameLabelMap.push({
+                    'developerName': cmtRecordName,
+                    'label': this._cmtRecordsByName[cmtRecordName].MasterLabel
+                });
             }
 
             this.displaySidebar = true;
-            console.log(this.cmtNameLabelMap);
         }
+    }
+
+    handleSelect(event) {
+        const selectedCmtRecordName = event.detail.name;
+        const recordSelectedEvent = new CustomEvent('recordselected', {
+            detail: selectedCmtRecordName
+        });
+        this.dispatchEvent(recordSelectedEvent);
     }
 }

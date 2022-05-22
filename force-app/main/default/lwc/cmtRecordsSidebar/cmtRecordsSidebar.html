@@ -1,18 +1,24 @@
 <!--
-  @description       : 
+  @description       : Component that displays a sidebar of records for a specific custom metadata type.
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 04-23-2022
+  @last modified on  : 05-21-2022
   @last modified by  : Ben Learn
 -->
 <template>
   <template if:true={displaySidebar}>
-    ddddf
-    {cmtNameLabelMap}
-    <template for:each={cmtNameLabelMap} for:item="cmtName">
-        <lightning-formatted-url label={cmtNameLabelMap.cmtName} key={cmtName}>
-        </lightning-formatted-url>
-        <br key={cmtName}/>
-    </template>
+    <lightning-vertical-navigation onselect={handleSelect} compact>
+      <lightning-vertical-navigation-section>
+        <div style="height: 300px" class="slds-scrollable_y">
+
+          <template for:each={cmtRecordNameLabelMap} for:item="cmt">
+            <lightning-vertical-navigation-item label={cmt.label} name={cmt.developerName} 
+              key={cmt.developerName}>
+            </lightning-vertical-navigation-item>
+          </template>
+
+        </div>
+      </lightning-vertical-navigation-section>
+    </lightning-vertical-navigation>
   </template>
 </template>

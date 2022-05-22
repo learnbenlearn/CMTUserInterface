@@ -9,6 +9,7 @@ export default class CmtUiContainer extends LightningElement {
     cmtRecordsByName;
     cmtNames;
     @track cmtOptions;
+    selectedCmt;
     showSpinner = true;
 
     connectedCallback() {
@@ -58,6 +59,9 @@ export default class CmtUiContainer extends LightningElement {
 
     handleCMTChange(event) {
         this.cmtRecordsByName = this.cmtRecordsByType[event.detail.value + '__mdt'].cmtNameRecordMap;
-        console.log(this.cmtRecordsByName);
+    }
+
+    handleRecordSelected(event) {
+        console.log(event.detail);
     }
 }

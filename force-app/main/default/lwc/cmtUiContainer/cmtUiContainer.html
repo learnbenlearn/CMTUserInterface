@@ -2,7 +2,7 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 04-23-2022
+  @last modified on  : 05-21-2022
   @last modified by  : Ben Learn
 -->
 <template>
@@ -20,7 +20,7 @@
         <lightning-combobox label="Select Custom Metadata Type" options={cmtOptions} onchange={handleCMTChange}>
         </lightning-combobox>
 
-        <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName}></c-cmt-records-sidebar>
+        <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName} onrecordselected={handleRecordSelected}></c-cmt-records-sidebar>
       </template>
     </template>
 </template>
