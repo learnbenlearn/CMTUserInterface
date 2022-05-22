@@ -9,7 +9,7 @@
   <template if:true={displaySidebar}>
     <lightning-vertical-navigation onselect={handleSelect} compact>
       <lightning-vertical-navigation-section>
-        <div style="height: 300px" class="slds-scrollable_y">
+        <div style="height: 300px" class="slds-scrollable">
 
           <template for:each={cmtRecordNameLabelMap} for:item="cmt">
             <lightning-vertical-navigation-item label={cmt.label} name={cmt.developerName} 

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 04-23-2022
+ * @last modified on  : 05-21-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -62,9 +62,13 @@ public with sharing class CmtUiService {
             Map<String, Schema.SObjectField> cmtFields = cmt.fields.getMap();
             List<String> fieldsToQuery = new List<String>();
 
+            Schema.DescribeFieldResult tempFieldResult;
+
             for(String cmtField : cmtFields.keySet()) {
-                if(cmtFields.get(cmtField).getDescribe().isCustom()) {
-                    fieldsToQuery.add(cmtField);
+                tempFieldResult = cmtFields.get(cmtField).getDescribe();
+
+                if(tempFieldResult.isCustom()) {
+                    fieldsToQuery.add(tempFieldResult.getName());
                 }
             }
 

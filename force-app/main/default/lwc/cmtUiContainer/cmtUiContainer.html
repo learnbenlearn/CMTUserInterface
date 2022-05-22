@@ -19,8 +19,18 @@
       <template if:true={cmtOptions}>
         <lightning-combobox label="Select Custom Metadata Type" options={cmtOptions} onchange={handleCMTChange}>
         </lightning-combobox>
+        <br/>
 
-        <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName} onrecordselected={handleRecordSelected}></c-cmt-records-sidebar>
+        <div class="slds-grid slds-gutters">
+          <div class="slds-col slds-size_1-of-3">
+            <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName} onrecordselected={handleRecordSelected}></c-cmt-records-sidebar>
+          </div>
+          <div class="slds-col slds-size_2-of-3">
+            <template if:true={recordSelected}>
+              <c-cmt-record-form cmt-custom-fields={recordCustomFields} cmt-record={selectedRecord}></c-cmt-record-form>
+            </template>
+          </div>
+        </div>
       </template>
     </template>
 </template>

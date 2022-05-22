@@ -9,7 +9,10 @@ export default class CmtUiContainer extends LightningElement {
     cmtRecordsByName;
     cmtNames;
     @track cmtOptions;
-    selectedCmt;
+    recordCustomFields;
+    recordSelected;
+    selectedRecord;
+    selectedType;
     showSpinner = true;
 
     connectedCallback() {
@@ -58,10 +61,17 @@ export default class CmtUiContainer extends LightningElement {
     }
 
     handleCMTChange(event) {
-        this.cmtRecordsByName = this.cmtRecordsByType[event.detail.value + '__mdt'].cmtNameRecordMap;
+        this.selectedType = event.detail.value + '__mdt';
+        this.cmtRecordsByName = this.cmtRecordsByType[this.selectedType].cmtNameRecordMap;
     }
 
     handleRecordSelected(event) {
-        console.log(event.detail);
+        this.recordCustomFields = this.cmtRecordsByType[this.selectedType]['cmtCustomFields'];
+
+        this.selectedRecord = this.cmtRecordsByName[event.detail];
+
+        if(!this.recordSelected) {
+            this.recordSelected = true;
+        }
     }
 }
