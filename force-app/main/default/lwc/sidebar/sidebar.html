@@ -1,0 +1,24 @@
+<!--
+  @description       : Generic component that displays a sidebar for a split view.
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 05-28-2022
+  @last modified by  : Ben Learn
+-->
+<template>
+  <template if:true={displaySidebar}>
+    <lightning-vertical-navigation onselect={handleSelect} compact>
+      <lightning-vertical-navigation-section>
+        <div style="height: 300px" class="slds-scrollable">
+
+          <template for:each={options} for:item="option">
+            <lightning-vertical-navigation-item label={option.label} name={option.value} 
+              key={option.value}>
+            </lightning-vertical-navigation-item>
+          </template>
+
+        </div>
+      </lightning-vertical-navigation-section>
+    </lightning-vertical-navigation>
+  </template>
+</template>

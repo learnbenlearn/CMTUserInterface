@@ -6,11 +6,11 @@ import setupCmtUi from '@salesforce/apex/CmtUiService.setupCmtUi';
 
 export default class CmtUiContainer extends LightningElement {
     cmtRecordsByType;
-    cmtRecordsByName;
+    cmtRecords;
     cmtNames;
     @track cmtOptions;
-    recordCustomFields;
-    recordSelected;
+    customFieldDescribe;
+    displayRecord;
     selectedRecord;
     selectedType;
     showSpinner = true;
@@ -62,16 +62,16 @@ export default class CmtUiContainer extends LightningElement {
 
     handleCMTChange(event) {
         this.selectedType = event.detail.value + '__mdt';
-        this.cmtRecordsByName = this.cmtRecordsByType[this.selectedType].cmtNameRecordMap;
+        this.cmtRecords = this.cmtRecordsByType[this.selectedType].recordMap;
     }
 
     handleRecordSelected(event) {
-        this.recordCustomFields = this.cmtRecordsByType[this.selectedType]['cmtCustomFields'];
+        this.selectedRecord = this.cmtRecords[event.detail];
+        this.customFieldDescribe = this.cmtRecordsByType[this.selectedType]['stringDescribeResult'];
 
-        this.selectedRecord = this.cmtRecordsByName[event.detail];
 
-        if(!this.recordSelected) {
-            this.recordSelected = true;
+        if(!this.displayRecord) {
+            this.displayRecord = true;
         }
     }
 }

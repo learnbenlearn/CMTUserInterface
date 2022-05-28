@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 05-21-2022
+ * @last modified on  : 05-28-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -42,7 +42,7 @@ public with sharing class CmtUiService {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Map<String, CmtDataWrapper> getCMTRecordsSingleCall(List<String> cmts) {
+    public static Map<String, CustomMetadataTypeWrapper> getCMTRecordsSingleCall(List<String> cmts) {
         if(cmts.size() > 100) {
             throw new AuraHandledException('To avoid violating governor limits, this method cannot' +
                 ' be called on a list of more than 100 Custom Metadata Types.');
@@ -56,35 +56,40 @@ public with sharing class CmtUiService {
             cmtDescribes.add(globalDescribeMap.get(cmt.toLowerCase() + '__mdt').getDescribe());
         }
 
-        Map<String, CmtDataWrapper> cmtRecordMap = new Map<String, CmtDataWrapper>();
+        Map<String, CustomMetadataTypeWrapper> customMetadataTypeInfos = new Map<String, CustomMetadataTypeWrapper>();
 
         for(Schema.DescribeSObjectResult cmt : cmtDescribes) {
             Map<String, Schema.SObjectField> cmtFields = cmt.fields.getMap();
             List<String> fieldsToQuery = new List<String>();
-
-            Schema.DescribeFieldResult tempFieldResult;
+            List<Map<String, String>> describeFieldResults = new List<Map<String, String>>();
 
             for(String cmtField : cmtFields.keySet()) {
-                tempFieldResult = cmtFields.get(cmtField).getDescribe();
+                Schema.DescribeFieldResult tempFieldResult = cmtFields.get(cmtField).getDescribe();
 
                 if(tempFieldResult.isCustom()) {
+                    Map<String, String> describeFieldResult = new Map<String, String>();
+                    describeFieldResult.put('DeveloperName', tempFieldResult.getName());
+                    describeFieldResult.put('MasterLabel', tempFieldResult.getLabel());
+                    describeFieldResult.put('DataType', String.valueOf(tempFieldResult.getType()));
+
+                    describeFieldResults.add(describeFieldResult);
                     fieldsToQuery.add(tempFieldResult.getName());
                 }
             }
 
             String queryString = 'SELECT MasterLabel, DeveloperName, ' + 
                 String.join(fieldsToQuery, ', ') + ' FROM ' + cmt.getName();
-            List<sObject> cmtRecords = Database.query(queryString);
-            Map<String, sObject> cmtNameRecordMap = new Map<String, sObject>();
+            List<sObject> records = Database.query(queryString);
+            Map<String, sObject> recordMap = new Map<String, sObject>();
 
-            for(sObject cmtRecord : cmtRecords) {
-                cmtNameRecordMap.put(String.valueOf(cmtRecord.get('DeveloperName')), cmtRecord);
+            for(sObject record : records) {
+                recordMap.put(String.valueOf(record.get('DeveloperName')), record);
             }
 
-            CmtDataWrapper tempWrapper = new CmtDataWrapper(cmtNameRecordMap, fieldsToQuery);
-            cmtRecordMap.put(cmt.getName(), tempWrapper);
+            CustomMetadataTypeWrapper tempWrapper = new CustomMetadataTypeWrapper(recordMap, describeFieldResults);
+            customMetadataTypeInfos.put(cmt.getName(), tempWrapper);
         }
         
-        return cmtRecordMap;
+        return customMetadataTypeInfos;
     }
 }

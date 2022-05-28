@@ -2,7 +2,7 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 05-21-2022
+  @last modified on  : 05-28-2022
   @last modified by  : Ben Learn
 -->
 <template>
@@ -23,11 +23,13 @@
 
         <div class="slds-grid slds-gutters">
           <div class="slds-col slds-size_1-of-3">
-            <c-cmt-records-sidebar cmt-records-by-name={cmtRecordsByName} onrecordselected={handleRecordSelected}></c-cmt-records-sidebar>
+            <c-sidebar label-key-name="MasterLabel" value-key-name="DeveloperName" sidebar-options={cmtRecords} 
+              onoptionselected={handleRecordSelected}>
+            </c-sidebar>
           </div>
           <div class="slds-col slds-size_2-of-3">
-            <template if:true={recordSelected}>
-              <c-cmt-record-form cmt-custom-fields={recordCustomFields} cmt-record={selectedRecord}></c-cmt-record-form>
+            <template if:true={displayRecord}>
+              <c-record-form record={selectedRecord} custom-field-describe={customFieldDescribe}></c-record-form>
             </template>
           </div>
         </div>
