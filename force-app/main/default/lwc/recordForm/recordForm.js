@@ -13,46 +13,51 @@ const INPUT_TYPES = {
 }
 
 export default class CmtRecordForm extends LightningElement {  
-    @api customFieldDescribe;
-    fieldInputInfos;
+    displayCustomFields;
+    customFields;
     @api record;
     readOnly = true;
 
-    connectedCallback() {
-        this.fieldInputInfos = [];
+    get customFieldDescribeResults() {
+        return this.customFields;
+    }
 
-        for(let customField of this.customFieldDescribe) {
-            let fieldInputInfo = {};
+    @api set customFieldDescribeResults(value) {
+        this.customFields = [];
 
-            if(Object.keys(INPUT_TYPES).indexOf(customField.DataType) != -1) {
-                fieldInputInfo.componentType = 'Input';
-                fieldInputInfo.type = INPUT_TYPES[customField.DataType];
+        for(let customFieldDescribeResult of value) {
+            let customField = {};
 
-                switch(customField.DataType) {
+            if(Object.keys(INPUT_TYPES).indexOf(customFieldDescribeResult.DataType) != -1) {
+                customField.componentType = 'Input';
+                customField.isRichText = false;
+                customField.type = INPUT_TYPES[customField.DataType];
+
+                switch(customFieldDescribeResult.DataType) {
                     case 'DOUBLE':
-                        fieldInputInfo.formatter = 'decimal';
+                        customField.formatter = 'decimal';
                         break;
                     case 'PERCENT':
-                        fieldInputInfo.formatter = 'percent';
+                        customField.formatter = 'percent';
                         break;
                 }
 
-            } else if(customField.DataType === 'PICKLIST') {
-
-            } else if(customField.DataType === 'TEXTAREA') {
-                fieldInputInfo.componentType = 'Input Rich Text';
+            } else if(customFieldDescribeResult.DataType === 'PICKLIST') {
+                customField.componentType = 'Combobox';
+                customField.isRichText = false;
+                customField.options = customFieldDescribeResult.PicklistValues;
+            } else if(customFieldDescribeResult.DataType === 'TEXTAREA') {
+                customField.componentType = 'Input Rich Text';
+                customField.isRichText = true;
             }
 
-            fieldInputInfo.developerName = customField.DeveloperName;
-            fieldInputInfo.label = customField.MasterLabel;
-            fieldInputInfo.value = this.record[customField.DeveloperName];
-            this.fieldInputInfos.push(fieldInputInfo);
-
-  /*          
-Picklist	PICKLIST
-            */
+            customField.developerName = customFieldDescribeResult.DeveloperName;
+            customField.label = customFieldDescribeResult.MasterLabel;
+            customField.value = this.record[customFieldDescribeResult.DeveloperName];
+            this.customFields.push(customField);
         }
-        console.log(this.fieldInputInfos);
+
+        this.displayCustomFields = true;
     }
 
     handleEdit() {

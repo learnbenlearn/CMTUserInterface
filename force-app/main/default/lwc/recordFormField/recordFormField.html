@@ -1,3 +1,30 @@
+<!--
+  @description       : 
+  @author            : Ben Learn
+  @group             : 
+  @last modified on  : 05-29-2022
+  @last modified by  : Ben Learn
+-->
 <template>
-    
+    <template if:true={comboboxComponent}>
+        <lightning-combobox label={customField.label} value={customField.value} options={customField.options} read-only={readOnly}
+            onchange={handleChange}>
+        </lightning-combobox>
+    </template>
+
+    <template if:true={inputComponent}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type} read-only={readOnly}>
+        </lightning-input>
+    </template>
+
+    <template if:true={inputRichTextComponent}>
+        <lightning-input-rich-text label={customField.label} value={customField.value} label-visible disabled={readOnly}>
+        </lightning-input-rich-text>
+    </template>
+
+    <template if:true={numberInputComponent}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type} 
+            formatter={customField.formatter} read-only={readOnly}>
+        </lightning-input>
+    </template>
 </template>

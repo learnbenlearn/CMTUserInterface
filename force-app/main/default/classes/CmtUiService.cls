@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 05-28-2022
+ * @last modified on  : 05-29-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -61,16 +61,32 @@ public with sharing class CmtUiService {
         for(Schema.DescribeSObjectResult cmt : cmtDescribes) {
             Map<String, Schema.SObjectField> cmtFields = cmt.fields.getMap();
             List<String> fieldsToQuery = new List<String>();
-            List<Map<String, String>> describeFieldResults = new List<Map<String, String>>();
+            List<Map<String, Object>> describeFieldResults = new List<Map<String, Object>>();
 
             for(String cmtField : cmtFields.keySet()) {
                 Schema.DescribeFieldResult tempFieldResult = cmtFields.get(cmtField).getDescribe();
 
                 if(tempFieldResult.isCustom()) {
-                    Map<String, String> describeFieldResult = new Map<String, String>();
+                    Map<String, Object> describeFieldResult = new Map<String, Object>();
                     describeFieldResult.put('DeveloperName', tempFieldResult.getName());
                     describeFieldResult.put('MasterLabel', tempFieldResult.getLabel());
                     describeFieldResult.put('DataType', String.valueOf(tempFieldResult.getType()));
+
+                    if(String.valueOf(tempFieldResult.getType()) == 'PICKLIST') {
+                        List<Map<String, String>> tempPicklistValues = new List<Map<String, String>>();
+                        List<Schema.PicklistEntry> picklistEntries = tempFieldResult.getPicklistValues();
+
+                        for(Schema.PicklistEntry picklistEntry : picklistEntries) {
+                            if(picklistEntry.isActive()) {
+                                Map<String, String> tempPicklistValue = new Map<String, String>();
+                                tempPicklistValue.put('label', picklistEntry.getLabel());
+                                tempPicklistValue.put('value', picklistEntry.getValue());
+                                tempPicklistValues.add(tempPicklistValue);
+                            }
+                        }
+
+                        describeFieldResult.put('PicklistValues', tempPicklistValues);
+                    }
 
                     describeFieldResults.add(describeFieldResult);
                     fieldsToQuery.add(tempFieldResult.getName());
@@ -85,7 +101,6 @@ public with sharing class CmtUiService {
             for(sObject record : records) {
                 recordMap.put(String.valueOf(record.get('DeveloperName')), record);
             }
-
             CustomMetadataTypeWrapper tempWrapper = new CustomMetadataTypeWrapper(recordMap, describeFieldResults);
             customMetadataTypeInfos.put(cmt.getName(), tempWrapper);
         }

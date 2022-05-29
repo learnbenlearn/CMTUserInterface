@@ -9,7 +9,7 @@ export default class CmtUiContainer extends LightningElement {
     cmtRecords;
     cmtNames;
     @track cmtOptions;
-    customFieldDescribe;
+    customFieldDescribeResults;
     displayRecord;
     selectedRecord;
     selectedType;
@@ -67,7 +67,7 @@ export default class CmtUiContainer extends LightningElement {
 
     handleRecordSelected(event) {
         this.selectedRecord = this.cmtRecords[event.detail];
-        this.customFieldDescribe = this.cmtRecordsByType[this.selectedType]['stringDescribeResult'];
+        this.customFieldDescribeResults = this.cmtRecordsByType[this.selectedType]['customFieldDescribeResults'];
 
 
         if(!this.displayRecord) {

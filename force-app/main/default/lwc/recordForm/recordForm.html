@@ -2,28 +2,41 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 05-22-2022
+  @last modified on  : 05-29-2022
   @last modified by  : Ben Learn
 -->
 <template>
     <lightning-card title={record.MasterLabel}>
-        <lightning-button label="Edit" onclick={handleEdit}></lightning-button>
+        <div style="height: 300px" class="slds-scrollable">
+            <lightning-button label="Edit" onclick={handleEdit}></lightning-button>
         
-        <div class="slds-grid slds-wrap">
-            <div class="slds-col slds-size_1-of-2">
-                <lightning-input label="Master Label" value={record.MasterLabel} read-only={readOnly}></lightning-input>
-            </div>
-    
-            <div class="slds-col slds-size_1-of-2">
-                <lightning-input label="Developer Name" value={record.DeveloperName} read-only={readOnly}></lightning-input>
-            </div>
-
-            <template for:each={customFieldValues} for:item="customFieldValue">
-                <div class="slds-col slds-size_1-of-2" key={customFieldValue.fieldLabel}>
-                    <lightning-input label={customFieldValue.fieldLabel} value={customFieldValue.fieldValue} read-only={readOnly}>
-                    </lightning-input>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input label="Master Label" value={record.MasterLabel} read-only={readOnly}></lightning-input>
                 </div>
-            </template>
+        
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input label="Developer Name" value={record.DeveloperName} read-only={readOnly}></lightning-input>
+                </div>
+    
+                <template if:true={displayCustomFields}> 
+                    <template for:each={customFields} for:item="customField">
+                        <template if:true={customField.isRichText} key={customField.developerName}>
+                            <div class="slds-col slds-size_1-of-1" key={customField.developerName}>
+                                <c-record-form-field custom-field={customField} read-only={readOnly}>
+                                </c-record-form-field>
+                            </div>
+                        </template>
+    
+                        <template if:false={customField.isRichText} key={customField.developerName}>
+                            <div class="slds-col slds-size_1-of-2" key={customField.developerName}>
+                                <c-record-form-field custom-field={customField} read-only={readOnly}>
+                                </c-record-form-field>
+                            </div>
+                        </template>
+                    </template>
+                </template>
+            </div>
         </div>
     </lightning-card>
 </template>
