@@ -1,5 +1,9 @@
 import { LightningElement, api } from 'lwc';
 
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+import saveCMT from '@salesforce/apex/CmtUiService.saveCMT';
+
 const INPUT_TYPES = {
     'BOOLEAN': 'checkbox',
     'DATE': 'date',
@@ -94,15 +98,15 @@ export default class CmtRecordForm extends LightningElement {
         this.readOnly = false;
     }
 
-    handleSave() {
-        
+    async handleSave() {
         let fieldComponents = [
             ... this.template.querySelectorAll('lightning-input'), 
             ... this.template.querySelectorAll('c-record-form-field')
         ];
 
         let invalidFields = [];
-
+        let validFields = [];
+        
         for(let fieldComponent of fieldComponents) {
             if(!fieldComponent.checkValidity()) {
                 if(fieldComponent.customField) {
@@ -110,10 +114,60 @@ export default class CmtRecordForm extends LightningElement {
                 } else {
                     invalidFields.push(fieldComponent.label);
                 }
+            } else {
+                if(fieldComponent.customField && fieldComponent.getValue()) {
+                    validFields.push(fieldComponent.getValue());
+                } else if(!fieldComponent.customField) {
+                    validFields.push({
+                        field: fieldComponent.name,
+                        value: fieldComponent.value
+                    })
+                }
             }
         }
 
-        console.log(invalidFields);
+        if(invalidFields.length > 0) {
+            this.fireInvalidToast(this.getInvalidMessageString(invalidFields));
+        } else {
+            try {
+                await saveCMT({fieldValues: validFields});
+            } catch(err) {
+
+            }
+            // do save things   
+        }
         // do something with this.readOnly
     }
+
+    getInvalidMessageString(invalidFields) {
+        let invalidMessageString = 'Please fix the ';
+
+        switch(invalidFields.length) {
+            case 1:
+                invalidMessageString += invalidFields[0] + ' field.';
+                break;
+            case 2:
+                invalidMessageString += invalidFields.join(' and ');
+                invalidMessageString += ' fields.';
+                break;
+            default:
+                invalidMessageString = invalidFields.join(', ');
+                let lastSpaceIndex = invalidMessageString.lastIndexOf(' ');
+                invalidMessageString = invalidMessageString.substring(0, lastSpaceIndex) + ' and ' +
+                    invalidMessageString.substring(lastSpaceIndex + 1) + ' fields.';
+        }
+
+        return invalidMessageString;
+    }
+
+    fireInvalidToast(errorMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: 'Record Not Saved',
+            message: errorMessage,
+            variant: 'error'
+        });
+
+        this.dispatchEvent(showToastEvent);
+    }
+
 }

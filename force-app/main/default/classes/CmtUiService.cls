@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 06-11-2022
+ * @last modified on  : 06-12-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -125,6 +125,11 @@ public with sharing class CmtUiService {
         }
 
         return fieldDescribeInfo;
+    }
+
+    @AuraEnabled
+    public static void saveCMT(List<Map<String, String>> fieldValues) {
+        System.debug(fieldValues);
     }
 }
 

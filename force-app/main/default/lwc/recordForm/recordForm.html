@@ -2,7 +2,7 @@
   @description       : 
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 06-11-2022
+  @last modified on  : 06-12-2022
   @last modified by  : Ben Learn
 -->
 <template>
@@ -20,13 +20,14 @@
         <div style="height: 300px" class="slds-scrollable">
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input label="Master Label" value={record.MasterLabel} read-only={readOnly} required="true">
+                    <lightning-input label="Master Label" name="MasterLabel" value={record.MasterLabel}
+                        required="true" read-only={readOnly}>
                     </lightning-input>
                 </div>
         
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input label="Developer Name" value={record.DeveloperName} read-only={readOnly}
-                        required="true">
+                    <lightning-input label="Developer Name" name="DeveloperName" 
+                        value={record.DeveloperName} required="true" read-only={readOnly}>
                     </lightning-input>
                 </div>
     

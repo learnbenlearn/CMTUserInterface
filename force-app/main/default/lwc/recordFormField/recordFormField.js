@@ -3,6 +3,7 @@ import { LightningElement, api } from 'lwc';
 export default class RecordFormField extends LightningElement {
     @api customField;
     comboboxComponent;
+    componentName;
     inputComponent;
     inputDecimalComponent;
     inputNumberComponent;
@@ -30,10 +31,14 @@ export default class RecordFormField extends LightningElement {
                 break;
             case 'Combobox':
                 this.comboboxComponent = true;
+                this.componentName = 'lightning-combobox';
                 break;
             case 'Text Area':
                 this.textAreaComponent = true;
+                this.componentName = 'lightning-textarea';
         }
+
+        this.componentName = this.componentName ?? 'lightning-input';
     }
 
     handleChange(event) {
@@ -41,16 +46,19 @@ export default class RecordFormField extends LightningElement {
     }
 
     @api checkValidity() {
-        let componentName;
+        return this.template.querySelector(this.componentName).validity.valid;
+    }
 
-        if(this.comboboxComponent) {
-            componentName = 'lightning-combobox';
-        } else if(this.textAreaComponent) {
-            componentName = 'lightning-textarea';
-        } else {
-            componentName = 'lightning-input';
+    @api getValue() {
+        let value = this.template.querySelector(this.componentName).value;
+
+        if(value) {
+            let fieldValue = {
+                field: this.customField.developerName,
+                value: this.template.querySelector(this.componentName).value
+            }
+    
+            return fieldValue;
         }
-
-        return this.template.querySelector(componentName).validity.valid;
     }
 }
