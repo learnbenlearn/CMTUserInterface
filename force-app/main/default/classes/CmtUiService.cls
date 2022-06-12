@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Ben Learn
  * @group             : 
- * @last modified on  : 05-29-2022
+ * @last modified on  : 06-11-2022
  * @last modified by  : Ben Learn
 **/
 public with sharing class CmtUiService {
@@ -67,28 +67,8 @@ public with sharing class CmtUiService {
                 Schema.DescribeFieldResult tempFieldResult = cmtFields.get(cmtField).getDescribe();
 
                 if(tempFieldResult.isCustom()) {
-                    Map<String, Object> describeFieldResult = new Map<String, Object>();
-                    describeFieldResult.put('DeveloperName', tempFieldResult.getName());
-                    describeFieldResult.put('MasterLabel', tempFieldResult.getLabel());
-                    describeFieldResult.put('DataType', String.valueOf(tempFieldResult.getType()));
-
-                    if(String.valueOf(tempFieldResult.getType()) == 'PICKLIST') {
-                        List<Map<String, String>> tempPicklistValues = new List<Map<String, String>>();
-                        List<Schema.PicklistEntry> picklistEntries = tempFieldResult.getPicklistValues();
-
-                        for(Schema.PicklistEntry picklistEntry : picklistEntries) {
-                            if(picklistEntry.isActive()) {
-                                Map<String, String> tempPicklistValue = new Map<String, String>();
-                                tempPicklistValue.put('label', picklistEntry.getLabel());
-                                tempPicklistValue.put('value', picklistEntry.getValue());
-                                tempPicklistValues.add(tempPicklistValue);
-                            }
-                        }
-
-                        describeFieldResult.put('PicklistValues', tempPicklistValues);
-                    }
-
-                    describeFieldResults.add(describeFieldResult);
+                    
+                    describeFieldResults.add(getFieldDescribeInfo(tempFieldResult));
                     fieldsToQuery.add(tempFieldResult.getName());
                 }
             }
@@ -107,4 +87,44 @@ public with sharing class CmtUiService {
         
         return customMetadataTypeInfos;
     }
+
+    private static Map<String, Object> getFieldDescribeInfo(Schema.DescribeFieldResult describeFieldResult) {
+        Map<String, Object> fieldDescribeInfo =  new Map<String, Object>();
+        String fieldType = String.valueOf(describeFieldResult.getType());
+
+        fieldDescribeInfo.put('DeveloperName', describeFieldResult.getName());
+        fieldDescribeInfo.put('MasterLabel', describeFieldResult.getLabel());
+        fieldDescribeInfo.put('DataType', fieldType);
+        fieldDescribeInfo.put('Required', !describeFieldResult.isNillable() && 
+            !describeFieldResult.isDefaultedOnCreate());
+
+        switch on fieldType {
+            when 'PICKLIST' {
+                List<Map<String, String>> tempPicklistValues = new List<Map<String, String>>();
+                List<Schema.PicklistEntry> picklistEntries = describeFieldResult.getPicklistValues();
+    
+                for(Schema.PicklistEntry picklistEntry : picklistEntries) {
+                    if(picklistEntry.isActive()) {
+                        Map<String, String> tempPicklistValue = new Map<String, String>();
+                        tempPicklistValue.put('label', picklistEntry.getLabel());
+                        tempPicklistValue.put('value', picklistEntry.getValue());
+                        tempPicklistValues.add(tempPicklistValue);
+                    }
+                }
+    
+                fieldDescribeInfo.put('PicklistValues', tempPicklistValues);
+            } when 'DOUBLE', 'PERCENT' {
+                fieldDescribeInfo.put('MaxLength', describeFieldResult.getPrecision());
+                
+                if(describeFieldResult.getScale() > 0) {
+                    fieldDescribeInfo.put('DecimalPlaces', describeFieldResult.getScale());
+                }    
+            } when 'STRING', 'TEXTAREA' {
+                fieldDescribeInfo.put('MaxLength', describeFieldResult.getLength());
+            }
+        }
+
+        return fieldDescribeInfo;
+    }
 }
+

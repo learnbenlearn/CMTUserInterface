@@ -1,30 +1,55 @@
 <!--
-  @description       : 
+  @description       : Generic component for a field on a record form. Supports the Boolean, Date,
+                        DateTime, Email, Double, Percent, Phone, String, and URL values of the 
+                        Schema.DisplayType enum.
   @author            : Ben Learn
   @group             : 
-  @last modified on  : 05-29-2022
+  @last modified on  : 06-11-2022
   @last modified by  : Ben Learn
 -->
 <template>
     <template if:true={comboboxComponent}>
-        <lightning-combobox label={customField.label} value={customField.value} options={customField.options} read-only={readOnly}
-            onchange={handleChange}>
+        <lightning-combobox label={customField.label} value={customField.value} 
+            options={customField.options} onchange={handleChange} required={customField.required} 
+            read-only={readOnly}>
         </lightning-combobox>
     </template>
 
     <template if:true={inputComponent}>
-        <lightning-input label={customField.label} value={customField.value} type={customField.type} read-only={readOnly}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type}
+            variant="label-stacked" required={customField.required} read-only={readOnly}>
         </lightning-input>
     </template>
 
-    <template if:true={inputRichTextComponent}>
-        <lightning-input-rich-text label={customField.label} value={customField.value} label-visible disabled={readOnly}>
-        </lightning-input-rich-text>
+    <template if:true={inputDecimalComponent}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type}
+            formatter={customField.formatter} step={customField.step} required={customField.required}
+            read-only={readOnly}>
+        </lightning-input>
     </template>
-
-    <template if:true={numberInputComponent}>
+    
+    <template if:true={inputNumberComponent}>
         <lightning-input label={customField.label} value={customField.value} type={customField.type} 
-            formatter={customField.formatter} read-only={readOnly}>
+            required={customField.required} read-only={readOnly}>
         </lightning-input>
+    </template>
+
+    <template if:true={inputPhoneComponent}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type} 
+            pattern={customField.pattern} message-when-pattern-mismatch={customField.messageWhenPatternMismatch}
+            required={customField.required} read-only={readOnly} >
+        </lightning-input>
+    </template>
+
+    <template if:true={inputTextComponent}>
+        <lightning-input label={customField.label} value={customField.value} type={customField.type} 
+            max-length={customField.maxLength} required={customField.required} read-only={readOnly}>
+        </lightning-input>
+    </template>
+
+    <template if:true={textAreaComponent}>
+        <lightning-textarea label={customField.label} value={customField.value} required={customField.required}
+            read-only={readOnly}>
+        </lightning-textarea>
     </template>
 </template>
